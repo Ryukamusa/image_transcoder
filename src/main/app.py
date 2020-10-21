@@ -40,9 +40,9 @@ def transcode_file_api():
     extension = content_type.split('/')[1]
     if content_type in allowed_types:
         file_name = str(uuid.uuid4())
-        resized_image_data, new_name = transcode_file(data, file_name, size)
-        get_s3_resource(file_name, resized_image_data)
-        return 'Foi'
+        new_name = transcode_image(data, file_name, size)
+        get_s3_resource(new_name, get_env('S3_DESTINATION_DATA'))
+        return jsonify({'size':len(data)})
     return 'Content-Type not allowed', 400
 
 if __name__ == '__main__':
