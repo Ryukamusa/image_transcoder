@@ -42,7 +42,7 @@ def transcode_file_api():
         file_name = str(uuid.uuid4())
         new_name = transcode_image(data, file_name, size)
         url = get_s3_resource(new_name, get_env('S3_DESTINATION_DATA'))
-        return jsonify({'size':len(data), 'url':url})
+        return jsonify({ 'url':url})
     return 'Content-Type not allowed', 400
 
 if __name__ == '__main__':
