@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import os
 from transcoder import transcode_image
 import uuid
+import io
+
 
 app = Flask(__name__)
 
@@ -30,18 +32,14 @@ def transcode_file_api():
     content_type = request.content_type
     extension = content_type.split('/')[1]
     if content_type in allowed_types:
-        image_id = uuid.uuid4()
-        file_name = uuid.uuid4()
-        with(file_name, 'wb') as f:
-            f.write(request.get_data())
+        file_name = str(uuid.uuid4())
+        file_name = str(uuid.uuid4())
+        data = request.get_data()
+        resized_image_data = transcode_file(data, file_name, size)
         local_name = transcode_file(file_name, size)
-        get_s3_resource(local_name)
-        return f'allowed {local_name}'
+        get_s3_resource(file_name, resized_image_data)
+        return 'Foi'
     return 'Content-Type not allowed', 400
-
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', port = 8081, debug = True)
 
 if __name__ == '__main__':
     load_env_vars()
