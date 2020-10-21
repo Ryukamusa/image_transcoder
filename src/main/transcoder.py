@@ -9,6 +9,6 @@ def transcode_image(data, file_name, size):
     save_name = f'{file_name}.{extension}'
     fn = time()
     took = fn-st
-    return im
+    return im, save_name
     # print(f'Converted {size} file - {took}')
     

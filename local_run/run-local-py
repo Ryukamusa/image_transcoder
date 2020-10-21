@@ -3,4 +3,4 @@
 cd ..
 docker build -t hmalmeida/img-py:0.1 .
 docker rm -f $(docker ps -qa)
-docker run -d --name img_transcode -v $HOME/.aws:/root/.aws -e STAGE_ENV=test -p 8080:8080 hmalmeida/img-py:0.1
+docker run -d --name img_transcode -v $HOME/.aws:/root/.aws -e STAGE_ENV=test -p 80:8080 hmalmeida/img-py:0.1

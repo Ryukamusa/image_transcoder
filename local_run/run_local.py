@@ -5,7 +5,7 @@ import time
 
 subprocess.call('./run-local-py', shell=True)
 
-health_url = 'http://localhost:8080/api/v1/health'
+health_url = 'http://localhost:80/api/v1/health'
 
 try:
     resp = req.get(health_url)
