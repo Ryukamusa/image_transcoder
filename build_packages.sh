@@ -1,0 +1,1 @@
+docker run -it -v $(pwd):/tmp/app --entrypoint /bin/sh lambci/lambda:build-python3.8
