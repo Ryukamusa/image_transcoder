@@ -33,7 +33,7 @@ resource "aws_lambda_layer_version" "pil_layer" {
 
 
 resource "aws_iam_role" "lambda_exec_role" {
-  name        = "lambda-s3-access"
+  name        = "lambda-s3-access-role3"
   path        = "/"
   description = "Allows Lambda Function to call AWS services on your behalf."
 

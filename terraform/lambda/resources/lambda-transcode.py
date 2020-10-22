@@ -25,11 +25,20 @@ def upload_transcoded_image(file_name, destination_bucket):
     took = fn-st
     # print(f'Uploaded file - {took}')
 
+def get_new_size(size, new_size):
+    width,height = size
+    ratio = width/height
+    if ratio >= 1:
+        return (new_size, int(new_size/ratio))
+    else:
+        return (int(new_size*ratio), new_size)
+
 def transcode_image(file_name, size, new_name):
     st = time()
-    im = Image.open(file_name)
-    im.thumbnail((size, size))
-    im.save(new_name)
+    image = Image.open(file_name)
+    new_size = get_new_size(image.size, size)
+    image = image.resize(new_size, Image.ANTIALIAS)
+    image.save(new_name)
     fn = time()
     took = fn-st
     # print(f'Converted {size} file - {took}')
