@@ -1,3 +1,4 @@
+aws_region="eu-central-1"
 transcode_sizes="1024,2048"
 timeout=40
 lambda_memory=1024

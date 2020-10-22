@@ -1,24 +1,19 @@
-resource "aws_s3_bucket_notification" "jpg_trigger" {
+resource "aws_s3_bucket_notification" "s3_event_trigger" {
   bucket = "insert-data-tf"
 
   lambda_function {
     lambda_function_arn = "${aws_lambda_function.transcode.arn}"
     events              = ["s3:ObjectCreated:*"]
-    filter_prefix       = "file-prefix"
     filter_suffix       = ".jpg"
   }
-}
-
-resource "aws_s3_bucket_notification" "png_trigger" {
-  bucket = "insert-data-tf"
-
+  
   lambda_function {
     lambda_function_arn = "${aws_lambda_function.transcode.arn}"
     events              = ["s3:ObjectCreated:*"]
-    filter_prefix       = "file-prefix"
-    filter_suffix       = ".jpg"
+    filter_suffix       = ".png"
   }
 }
+
 
 resource "aws_lambda_permission" "test" {
   statement_id  = "AllowS3Invoke"

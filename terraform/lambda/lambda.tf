@@ -19,7 +19,7 @@ resource "aws_lambda_function" "transcode" {
   environment {
     variables = {
       TRANSCODE_SIZES = var.transcode_sizes
-      S3_DESTINATION_BUCKET = aws_s3_bucket.transcoded.name
+      S3_DESTINATION_BUCKET = aws_s3_bucket.transcoded.id
     }
   }
 }
@@ -33,7 +33,7 @@ resource "aws_lambda_layer_version" "pil_layer" {
 
 
 resource "aws_iam_role" "lambda_exec_role" {
-  name        = "lambda_exec"
+  name        = "lambda-s3-access"
   path        = "/"
   description = "Allows Lambda Function to call AWS services on your behalf."
 
@@ -53,8 +53,8 @@ resource "aws_iam_role" "lambda_exec_role" {
 EOF
 }
 
-resource "aws_iam_role_policy_attachment" "role-policy-attachment" {
-  role       = var.lambda_exec_role.arn
+resource "aws_iam_role_policy_attachment" "role_policy_attachment" {
+  role       = aws_iam_role.lambda_exec_role.name
   count      = "${length(var.iam_policy_arn)}"
   policy_arn = "${var.iam_policy_arn[count.index]}"
 }

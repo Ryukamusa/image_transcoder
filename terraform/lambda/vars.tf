@@ -13,3 +13,7 @@ variable "timeout" {
 variable "lambda_memory" {
     description = "Lambda RAM memory"
 }
+
+variable "aws_region" {
+    description = "The aws region"
+}
