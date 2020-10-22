@@ -1,3 +1,0 @@
-curl -X POST http://helio-tmp-alb-251797290.eu-central-1.elb.amazonaws.com/api/v1/s3 --data '{"files": ["event.json","test.txt", "test.jpg", "natakie.txt"]}' -H "Content-Type: application/json"
-curl -X POST http://localhost/api/v1/s3 --data '{"files": ["event.json","test.txt", "test.jpg", "natakie.txt"]}' -H "Content-Type: application/json"
-helio-nlb-3586b482ee028d0a.elb.eu-central-1.amazonaws.com
