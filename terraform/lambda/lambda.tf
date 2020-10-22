@@ -2,11 +2,11 @@ resource "aws_lambda_function" "transcode" {
   filename      = "resources/lambda.zip"
   function_name = "s3-transcode"
   role          = aws_iam_role.lambda_exec_role.arn
-  handler       = "lambda-transcode.lambda_handler"
+  handler       = var.lambda_handler
 
   source_code_hash = filebase64sha256("resources/lambda.zip")
 
-  runtime = "python3.8"
+  runtime = var.runtime_env
   layers = [aws_lambda_layer_version.pil_layer.arn]
   timeout = var.timeout
   memory_size = var.lambda_memory
@@ -28,7 +28,7 @@ resource "aws_lambda_layer_version" "pil_layer" {
   filename   = "resources/pil.zip"
   layer_name = "pil-package"
 
-  compatible_runtimes = ["python3.8"]
+  compatible_runtimes = [var.runtime_env]
 }
 
 

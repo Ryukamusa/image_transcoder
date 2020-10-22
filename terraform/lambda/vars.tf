@@ -17,3 +17,11 @@ variable "lambda_memory" {
 variable "aws_region" {
     description = "The aws region"
 }
+
+variable "runtime_env" {
+    description = "Lambda runtime"
+}
+
+variable "lambda_handler" {
+    description = "The lambda function handler"
+}
