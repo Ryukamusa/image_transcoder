@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 from transcoder import transcode_image
 import uuid
-import io
 
 
 app = Flask(__name__)

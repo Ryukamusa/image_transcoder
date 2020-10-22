@@ -11,9 +11,9 @@ def get_new_size(size, new_size):
         
 def transcode_image(data, file_name, size):
     image = Image.open(io.BytesIO(data))
+    extension = image.format.lower()
     new_size = get_new_size(image.size, size)
     image = image.resize(new_size, Image.ANTIALIAS)
-    extension = image.format.lower()
     save_name = f'{file_name}.{extension}'
     image.save(save_name)
     return save_name
