@@ -1,7 +1,6 @@
-# image_transcoder
+# Image Transcoder
 
-## Presentation
-* Turn S3 public read on
+## Concept
+This is an image transcorder that gets new images in a S3 bucket and performs transformation in that image and outputs it to another bucket.
 
-* API GW with lambda for rest api -> could not handle easily upload larger than 10Mb
-* Code to be deployed in a cluster and server through the LB in place
+First version, further work to be done.
